@@ -1,4 +1,3 @@
-#Account
 
 class Account(object):
 
@@ -9,5 +8,3 @@ class Account(object):
         self.portfolio = portfolio
         self.orders = orders
 
-
-    def AddAccount(self, name, id, balance, portfolio, orders):
