@@ -1,3 +1,4 @@
+import Stock
 
 class Account(object):
 
@@ -8,3 +9,12 @@ class Account(object):
         self.portfolio = portfolio
         self.orders = orders
 
+    portfolio = {
+        "Name": Stock.name,
+        "Number of stock": 0
+    }
+
+    orders = {
+        "Buys": 0,
+        "Sells": 0,
+    }
