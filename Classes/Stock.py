@@ -6,3 +6,4 @@ class Stock:
         self.curr = curr
         self.name = name
         self.ticker = ticker
+
