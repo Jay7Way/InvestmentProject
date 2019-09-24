@@ -1,3 +1,7 @@
+class accounts:
+    accounts = []
+
+
 class MarketOperator:
     value = 0
 
