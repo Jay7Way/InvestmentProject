@@ -3,8 +3,17 @@
 import requests
 import pandas as pd
 
-def dataParser(ticker,dataImportType="TIME_SERIES_INTRADAY", interval="1min", outputsize="compact", apikey="B09JFLLPFQJIIV6O"):
+def dataParser(ticker, returntype="latest",dataImportType="TIME_SERIES_INTRADAY", interval="1min", outputsize="compact", apikey="B09JFLLPFQJIIV6O"):
 
+    if returntype == "latest":
+        print("Giving latest information of "+ticker)
+
+    elif returntype == "history":
+        print("Giving history of "+ticker)
+        interval = "15min"
+        outputsize = "full"
+
+    
     requestString="https://www.alphavantage.co/query?function="+dataImportType+"&symbol="+ticker+"&interval="+interval+"&outputsize="+outputsize+"&apikey="+apikey
     print("Request made at "+requestString)
     response = requests.get(requestString)
@@ -40,8 +49,15 @@ def dataParser(ticker,dataImportType="TIME_SERIES_INTRADAY", interval="1min", ou
     # Let's fix the column names
     df.rename(columns=lambda s: s[3:], inplace=True)
     #df.info()
-    currentTickerInfo=df.iloc[0]
-    return currentTickerInfo
+
+    if returntype == "latest":
+        currentTickerInfo=df.iloc[0]
+        return currentTickerInfo
+    elif returntype == "history":
+        return df
+    else:
+        print("This should not happen")
+        return 0
 
 
 ticker=input("choose symbol (e.g. MSFT, INTC)")
