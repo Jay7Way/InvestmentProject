@@ -3,14 +3,10 @@
 import requests
 import pandas as pd
 
-def dataParser(symbol,dataImportType="TIME_SERIES_INTRADAY", interval="5min", outputsize="full", apikey="B09JFLLPFQJIIV6O"):
+def dataParser(ticker,dataImportType="TIME_SERIES_INTRADAY", interval="1min", outputsize="compact", apikey="B09JFLLPFQJIIV6O"):
 
-    try:
-        print(symbol)
-    except:
-        print("no symbol was called")
-
-    requestString="https://www.alphavantage.co/query?function="+dataImportType+"&symbol="+symbol+"&interval="+interval+"&outputsize="+outputsize+"&apikey="+apikey
+    requestString="https://www.alphavantage.co/query?function="+dataImportType+"&symbol="+ticker+"&interval="+interval+"&outputsize="+outputsize+"&apikey="+apikey
+    print("Request made at "+requestString)
     response = requests.get(requestString)
 
     # Since we are retrieving stuff from a web service, it's a good idea to check for the return status code
@@ -22,30 +18,32 @@ def dataParser(symbol,dataImportType="TIME_SERIES_INTRADAY", interval="5min", ou
     raw_data = response.json()
 
     # Let's look at the raw data (it's a lot so let's limit it)
-    raw_data.keys()
-    raw_data['Meta Data']
+    #raw_data.keys()
+    #raw_data['Meta Data']
 
 
     # The actual time series is huge, let's just look at the first few items
     # Let's use itertools to do this in a lazy way
     import itertools
-    list(itertools.islice(raw_data['Time Series (5min)'].items(), 0,5))
+    list(itertools.islice(raw_data['Time Series ('+interval+')'].items(), 0,5))
 
     # Let's be smart and retrieve the name of the column with our actual data
     colname = list(raw_data.keys())[-1]
     # We want to extract the corresponding column only
     data = raw_data[colname]
     df = pd.DataFrame(data).T.apply(pd.to_numeric)
-    df.info()
-    df.head()
+    #df.info()
+    #df.head()
 
     # Next we parse the index to create a datetimeindex
     df.index = pd.DatetimeIndex(df.index)
     # Let's fix the column names
     df.rename(columns=lambda s: s[3:], inplace=True)
-    df.info()
-    print(df)
+    #df.info()
+    currentTickerInfo=df.iloc[0]
+    return currentTickerInfo
 
 
-sym=input("choose symbol (e.g. MSFT, INTC)")
-dataParser(symbol=sym)
+ticker=input("choose symbol (e.g. MSFT, INTC)")
+tickerInfo=dataParser(ticker="INTC")
+
