@@ -14,7 +14,6 @@ operator = MarketOperator(1000)
 
 print(operator.value)
 
-
 operator.profit(100)
 
 
