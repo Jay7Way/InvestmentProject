@@ -2,6 +2,7 @@ class Order:
     volume = 0
     timeStamp = ""
     value = 0
+    Account = ""
 
     def __init__(self, inputVolume, inputTimeStamp, inputValue):
         self.volume = inputVolume
