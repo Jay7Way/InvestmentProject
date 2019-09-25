@@ -1,8 +1,9 @@
 class Stock:
     name = ""
-    ask = 0
-    curr = "Eur"
-    bid = ""
+    price = 0
+    #ask = 0
+    #curr = "Eur"
+    #bid = ""
     ticker = ""
 
     def __init__(self, price, name, ticker):

@@ -3,6 +3,7 @@ class Order:
     ticker = ""
     timeStamp = ""
     value = 0
+    Account = ""
 
     def __init__(self, inputTicker,inputVolume, inputTimeStamp, inputValue):
         self.volume = inputVolume
