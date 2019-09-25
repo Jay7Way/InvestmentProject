@@ -3,7 +3,6 @@ class Stock:
     price = 0
     ticker = ""
 
-
     def __init__(self, price, name, ticker):
         self.price = price
         self.name = name
@@ -17,3 +16,4 @@ class Stock:
         self.ticker = ticker
         return self.name
 
+apple = Stock(name="Apple", price=10, ticker="AAPL")

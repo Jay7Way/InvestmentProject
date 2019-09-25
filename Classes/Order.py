@@ -12,9 +12,11 @@ class Order:
         self.direction = 1
 
     def totalCost(order):
-        print(order.direction * order.volume * order.value)
-        return order.direction * order.volume * order.value
-
+        if order:
+            print(order.direction * order.volume * order.value)
+            return order.direction * order.volume * order.value
+        else:
+            return 0
 
 class Buy(Order):
     def __init__(self, inputTicker, inputVolume, inputValue):
