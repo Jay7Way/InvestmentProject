@@ -1,9 +1,6 @@
 class Stock:
     name = ""
     price = 0
-    #ask = 0
-    #curr = "Eur"
-    #bid = ""
     ticker = ""
 
     def __init__(self, price, name, ticker):
@@ -11,11 +8,12 @@ class Stock:
         self.name = name
         self.ticker = ticker
 
-
-    def Price(self, ticker):
+    def getprice(self, ticker):
         self.ticker = ticker
         return self.price
 
     def Name(self, ticker):
         self.ticker = ticker
         return self.name
+
+apple = Stock(name="Apple", price=10, ticker="AAPL")
