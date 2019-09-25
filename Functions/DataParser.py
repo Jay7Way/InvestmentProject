@@ -74,3 +74,5 @@ print(tickerInfo)
 if tickerInfo.size > 1:
     plt1 = tickerInfo.plot(kind='line')
     plt.title("History of "+ticker)
+    plt.xlabel("Time")
+    plt.xlabel("Price")
