@@ -5,22 +5,21 @@ from Classes.Order import Buy, Sell, Order
 
 class Account:
 
-    portfolio = {
-        "Name": Stock.name,
-        "Number of stock": 0
-    }
+    # portfolio = {
+    #     "Name": Stock.name,
+    #     "Number of stock": 0
+    # }
+    #
+    # orders = {
+    #     "Buys": Buy,
+    #     "Sells": Sell,
+    # }
 
-    orders = {
-        "Buys": Buy,
-        "Sells": Sell,
-    }
-
-    def __init__(self, name, id, balance, portfolio, sells, buys):
+    def __init__(self, name, id, balance):
         self.name = name
         self.id = id
         self.balance = balance
-        self.portfolio = portfolio
-        self.orders = sells, buys
+
 
     def AddStock(self, ticker, quantity):
         stockName = Stock.Name(ticker)
@@ -59,11 +58,11 @@ class Account:
         print("There are ", remaining, " stocks left unsold")
 
 
-account1 = Account("AccountHolder1", "007", 10000, "", "", "")
-
-print(account1.balance)
-
-account1.BuyStock("AAPL", 10)
-
-print(account1.balance)
+# account1 = Account("AccountHolder1", "007", 10000, "", "", "")
+#
+# print(account1.balance)
+#
+# account1.BuyStock("AAPL", 10)
+#
+# print(account1.balance)
 
