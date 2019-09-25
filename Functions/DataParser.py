@@ -65,14 +65,14 @@ def dataParser(ticker, returntype, dataImportType="TIME_SERIES_DAILY", interval=
         print("This should not happen")
         return 0
 
-#test code
-#ticker=input("choose symbol (e.g. MSFT, INTC, AAPL, GOOGL)")
-ticker="GOOGL"
-tickerInfo=dataParser(ticker=ticker, returntype="history")
-
-print(tickerInfo)
-if tickerInfo.size > 1:
-    plt1 = tickerInfo.plot(kind='line')
-    plt.title("History of "+ticker)
-    plt.xlabel("Time")
-    plt.xlabel("Price")
+# #test code
+# #ticker=input("choose symbol (e.g. MSFT, INTC, AAPL, GOOGL)")
+# ticker="GOOGL"
+# tickerInfo=dataParser(ticker=ticker, returntype="history")
+#
+# print(tickerInfo)
+# if tickerInfo.size > 1:
+#     plt1 = tickerInfo.plot(kind='line')
+#     plt.title("History of "+ticker)
+#     plt.xlabel("Time")
+#     plt.xlabel("Price")

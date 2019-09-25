@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock overview</title>
+</head>
+<body>
+    {% for stock in db.keys() %}
+        the price for {{stock}}
+        is: {{db[stock]}}
+    {% endfor %}
+</body>
+</html>
