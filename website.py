@@ -6,7 +6,7 @@ app = Flask(__name__)
 def hello():
     return render_template("hello.html")
 
-db = {'GOOGL':5.4,'MFST':6,'AAPL':5}
+db = {'GOOGL':5.4,'MFST':6,'AAPL':5, 'INIC':70}
 
 @app.route('/stock')
 def stock():
