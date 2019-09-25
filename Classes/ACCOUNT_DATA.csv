@@ -1,0 +1,7 @@
+NAME,ID,BALANCE,PORTFOLIO,ORDER
+
+HArrie,1231,50000,[],[]
+
+Jamie,4000,1000000,[],[]
+Pieter van Dusseldorp,007,1000000000,[],[]
+Jamie Kane,1008,5000000,"[AAPL,50]",[]
