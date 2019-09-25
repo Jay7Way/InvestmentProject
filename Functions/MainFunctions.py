@@ -11,3 +11,12 @@ def getAccount(accName, accList):
             return i
 
     return None
+
+# TO BUILD
+def BuyStock(account, stock, quantity):
+    price = stock.get_current_price()
+    if account.balance > price*quantity:
+        account.balance += self.balance + Buy.totalCost(Buy(ticker, quantity, price))
+        account.AddStock(ticker, quantity)
+    else:
+        Exception("Insufficient funds in the account to process this purchase")

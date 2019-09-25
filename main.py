@@ -3,20 +3,29 @@ from Classes.Account import Account
 import pandas as pd
 from Functions.AccountsCreator import accountsCreator
 from Functions.MainFunctions import getAccount
+from Classes.Stock import Stock
 
 traded_tickers=["AAPL", "GOOGL", "INTC", "MFST"]
+traded_tickers=["AAPL", "GOOGL"] #temp small set
+
 AAPL_history = dataParser("AAPL", "history")
-# MktInput = MktInput.append {"GOOGL" : int(dataParser("GOOGL", "latest"))}
+GOOGL_history = dataParser("GOOGL", "history")
 # MktInput = MktInput.append(dataParser("INTC", "history"))
 # MktInput = MktInput.append(dataParser("MFST", "history"))
 accList, df= accountsCreator(True)
 
+apple = Stock(AAPL_history[-1], "Apple", "AAPL", AAPL_history)
+google = Stock(GOOGL_history[-1], "Google", "GOOGL", GOOGL_history)
+traded_stocks=[apple, google]
 
 cont = True
 t=1
 while (cont):
-    todaysPrices = {"AAPL": AAPL_history[-t]}
-    print("Todays price of AAPL is "+str(todaysPrices["AAPL"]))
+    #update prices
+    for i in range(0,len(traded_stocks)):
+        traded_stocks[i].update_price(t)
+        print("Todays price of "+traded_stocks[i].name+" is "+str(traded_stocks[i].current_price))
+
     #get and check name
     name=input("Who will trade?")
     index=getAccount(name, accList)
@@ -34,7 +43,7 @@ while (cont):
     #get quantity
     quant=int(input("How many stocks?"))
 
-
+    #call buy/sell funciton
     prevBalance = accList[index].balance
     accList[index].balance-=todaysPrices[ticker]*quant
     print(name+" bought "+str(quant)+" of "+ticker+" at "+str(todaysPrices[ticker])+" each. Previous balance was " + str(prevBalance)+", new balance is: "+str(accList[index].balance))
