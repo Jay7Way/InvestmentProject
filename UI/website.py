@@ -6,9 +6,7 @@ app = Flask(__name__)
 def hello():
     return render_template("hello.html")
 
-db = {'GOOGL':5,'MFST':6,'AAPL':5}
-
-
+db = {'GOOGL':5.4,'MFST':6,'AAPL':5}
 
 @app.route('/stock')
 def stock():
@@ -19,13 +17,12 @@ def stock():
 def form():
     if request.method == "POST":
         stock = request.form["stock"]
-        amount = request.form["amount"]
-        price = db[stock]
-        costs = (int(amount)*price)
         if stock == "error1":
             exit()
-
-
-        return "You have bought " + amount + " of " + stock + ", which costs: " + str(costs)
+        else:
+            amount = request.form["amount"]
+            price = db[stock]
+            costs = (int(amount)*price)
+            return "You have bought " + amount + " of " + stock + ", which costs: " + str(costs)
     else:
         return render_template("form.html")
