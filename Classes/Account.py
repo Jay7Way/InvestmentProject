@@ -1,6 +1,6 @@
 
 from Classes.Stock import Stock
-from Classes.Order import Buy, Sell, totalCost
+from Classes.Order import Buy, Sell, totalCost, Order
 
 
 class Account:
@@ -46,11 +46,14 @@ class Account:
             print("Account holder does not own any of this stock")
 
     def BuyStock(self, ticker, quantity):
-        self.balance += self.balance + totalCost(Buy(ticker, quantity, "", Stock.Price(ticker)))
-        self.AddStock(ticker, quantity)
+        if self.balance > totalCost(Order(ticker, quantity, Stock.Price(ticker))):
+            self.balance += self.balance + totalCost(Buy(ticker, quantity, Stock.Price(ticker)))
+            self.AddStock(ticker, quantity)
+        else:
+            Exception("Insufficient funds in the account to process this purchase")
 
     def SellStock(self, ticker, quantity):
-        self.balance +=  self.balance + totalCost(Sell(ticker, quantity, "", Stock.Price(ticker)))
+        self.balance +=  self.balance + totalCost(Sell(ticker, quantity, Stock.Price(ticker)))
         remaining = self.RemoveStock(ticker, quantity)
         print("There are", remaining, " stocks left unsold")
 

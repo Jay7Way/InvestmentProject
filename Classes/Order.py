@@ -10,18 +10,18 @@ class Order:
         self.ticker = inputTicker
         self.timeStamp = inputTimeStamp
         self.value = inputValue
-        self.direction = 0
+        self.direction = 1
 
 
 class Buy(Order):
-    def __init__(self, inputTicker, inputVolume, inputTimeStamp, inputValue):
-        Order.__init__(self, inputTicker, inputVolume, inputTimeStamp, inputValue)
+    def __init__(self, inputTicker, inputVolume, inputValue):
+        Order.__init__(self, inputTicker, inputVolume, inputValue)
         self.direction = -1
 
 
 class Sell(Order):
-    def __init__(self, inputTicker, inputVolume, inputTimeStamp, inputValue):
-        Order.__init__(self, inputTicker, inputVolume, inputTimeStamp, inputValue)
+    def __init__(self, inputTicker, inputVolume, inputValue):
+        Order.__init__(self, inputTicker, inputVolume, inputValue)
         self.direction = 1
 
 
@@ -30,12 +30,12 @@ def totalCost(order):
     return order.direction * order.volume * order.value
 
 
-order1 = Buy("GOOGL",1000, "", 10)
+order1 = Buy("GOOGL",1000, 10)
 
 
 totalCost(order1)
 
-order2 = Sell("AAPL", 50, "", 30)
+order2 = Sell("AAPL", 50, 30)
 
 totalCost(order2)
 
