@@ -1,5 +1,4 @@
 import MarketOperator
-import A
 
 # Add account
 def AddAccount(name, id, balance, portfolio, orders):
