@@ -1,11 +1,6 @@
 NAME,ID,BALANCE,PORTFOLIO,ORDER
-
 HArrie,1231,50000,[],[]
-
 Jamie,4000,1000000,[],[]
-Pieter van Dusseldorp,007,1000000000,[],[]
-Jamie Kane,1008,5000000,"[AAPL,50]",[]
-Pieter,007,1000000000,"[AAPL,100]",[]
-Klaas Laverjassen,1236,30000,"[GOOG, 40]",[]
-K. Laverjas,5007,30000,"[GOOG, 40]",[]
-Pieer,4930203,4314235359,"[{'GOOG', '20'}]",[]
+Pieter van Dusseldorp,33000,1000000,"[{40, \"AAPL\"}]",[]
+Henkie,30049,40000,"[]",[]
+reindert,1,1000,"[{""GOOG"": 500}]",[]
