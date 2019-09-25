@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def dataParser(ticker, returntype, dataImportType="TIME_SERIES_INTRADAY", interval="1min", outputsize="compact", apikey="B09JFLLPFQJIIV6O"):
+def dataParser(ticker, returntype, dataImportType="TIME_SERIES_DAILY", interval="Daily", outputsize="compact", apikey="B09JFLLPFQJIIV6O"):
 
     #check if we support the requested ticker
     traded_tickers=["AAPL", "GOOGL", "INTC", "MFST"]
@@ -15,17 +15,18 @@ def dataParser(ticker, returntype, dataImportType="TIME_SERIES_INTRADAY", interv
     #check supported data delivery
     if returntype == "latest":
         print("Giving latest information of "+ticker)
+        #interval = "Daily"
         outputsize = "compact"
     elif returntype == "history":
-        print("Giving history (1 min interval) of "+ticker)
-        interval = "1min"
+        print("Giving history (interval: "+interval+") of "+ticker)
+        #interval = "Daily"
         outputsize = "full"
     else:
         print("Invalid returntype: " + returntype)
         return 0
 
     ### magic import code
-    requestString="https://www.alphavantage.co/query?function="+dataImportType+"&symbol="+ticker+"&interval="+interval+"&outputsize="+outputsize+"&apikey="+apikey
+    requestString="https://www.alphavantage.co/query?function="+dataImportType+"&symbol="+ticker+"&outputsize="+outputsize+"&apikey="+apikey
     print("Request made at "+requestString)
     response = requests.get(requestString)
     # Since we are retrieving stuff from a web service, it's a good idea to check for the return status code
@@ -59,15 +60,17 @@ def dataParser(ticker, returntype, dataImportType="TIME_SERIES_INTRADAY", interv
     if returntype == "latest":
         return df['close'].iloc[0]
     elif returntype == "history":
-        return df['close']
+        return df['close'][0:500]
     else:
         print("This should not happen")
         return 0
 
 #test code
 #ticker=input("choose symbol (e.g. MSFT, INTC, AAPL, GOOGL)")
-tickerInfo=dataParser(ticker="GOOGL", returntype="history")
+ticker="GOOGL"
+tickerInfo=dataParser(ticker=ticker, returntype="history")
 
 print(tickerInfo)
-
-tickerInfo.plot(kind='line')
+if tickerInfo.size > 1:
+    plt1 = tickerInfo.plot(kind='line')
+    plt.title("History of "+ticker)
