@@ -1,14 +1,9 @@
 class Market(object):
 
-    def __init__(self, buys, sells, accounts):
-        self.buys = buys
-        self.sells = sells
-        self.accounts = accounts
+    def __init__(self, bids, asks):
+        self.bids = bids
+        self.asks = asks
+        self.accounts = []
 
-
-    def buyStock(self, ticker, quantity):
-
-    def acceptBuys(self, buys):
-        if(buys):
-
-
+    def AddAccount(self, name, id, balance, portfolio, orders):
+        self.accounts.append([name, id, balance, portfolio, orders])

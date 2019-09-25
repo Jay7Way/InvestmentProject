@@ -1,12 +1,13 @@
+
 from Classes.Stock import Stock
 from Classes.Order import Buy, Sell
 
-class Account(object):
+class Account:
 
     portfolio = {
         "Name": Stock.name,
         "Number of stock": 0
-        }
+    }
 
     orders = {
         "Buys": Buy,
@@ -18,7 +19,6 @@ class Account(object):
         self.id = id
         self.balance = balance
         self.portfolio = portfolio
-        self.orders = sells, buys
 
     def AddStock(self, name, number):
         self.portfolio.append({"Name:": name,
