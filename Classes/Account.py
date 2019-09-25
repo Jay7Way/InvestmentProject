@@ -1,20 +1,36 @@
-from .Stock import Stock
+
+from Classes.Stock import Stock
+from Classes.Order import Order
+from Classes.Order import Buy
+from Classes.Order import Sell
+
+
 
 class Account:
 
-    def __init__(self, name, id, balance, portfolio, orders):
+
+
+    def __init__(self, name, id, balance, portfolio, sells, buys):
         self.name = name
         self.id = id
         self.balance = balance
         self.portfolio = portfolio
-        self.orders = orders
+        self.portfolio = {
+            "Name": Stock.name,
+            "Number of stock": 0
+        }
+        self.orders = {
+        "Buys": buys,
+        "Sells": sells,
+        }
 
-    portfolio = {
-        "Name": Stock.name,
-        "Number of stock": 0
-    }
+    def AddStock(self, name, number):
+        self.portfolio.append({"Name:": name,
+        "Number of stock": number}
+        )
 
-    orders = {
-        "Buys": 0,
-        "Sells": 0,
-    }
+
+    def AddBuy(self, buys):
+        self.orders.append({"Buys": buys}
+        )
+
