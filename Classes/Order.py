@@ -5,10 +5,9 @@ class Order:
     value = 0
     Account = ""
 
-    def __init__(self, inputTicker,inputVolume, inputTimeStamp, inputValue):
+    def __init__(self, inputTicker, inputVolume, inputValue):
         self.volume = inputVolume
         self.ticker = inputTicker
-        self.timeStamp = inputTimeStamp
         self.value = inputValue
         self.direction = 1
 
