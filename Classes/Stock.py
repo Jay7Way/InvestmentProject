@@ -15,3 +15,7 @@ class Stock:
     def Price(self, ticker):
         self.ticker = ticker
         return self.price
+
+    def Name(self, ticker):
+        self.ticker = ticker
+        return self.name

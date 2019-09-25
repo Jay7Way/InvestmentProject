@@ -27,7 +27,7 @@ class Account:
 
     def BuyStock(self, ticker, quantity):
         self.balance +=  self.balance + Buy(ticker, quantity, "", Stock.Price(ticker))
-        self.portfolio.append(ticker, quantity)
+        self.AddStock(Stock.Name(ticker), quantity)
 
     def SellStock(self, ticker, quantity):
         self.balance +=  self.balance + Sell(ticker, quantity, "", Stock.Price(ticker))
