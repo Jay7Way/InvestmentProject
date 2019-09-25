@@ -2,6 +2,7 @@
 
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def dataParser(ticker, returntype, dataImportType="TIME_SERIES_INTRADAY", interval="1min", outputsize="compact", apikey="B09JFLLPFQJIIV6O"):
 
@@ -16,8 +17,8 @@ def dataParser(ticker, returntype, dataImportType="TIME_SERIES_INTRADAY", interv
         print("Giving latest information of "+ticker)
         outputsize = "compact"
     elif returntype == "history":
-        print("Giving history (15 min interval) of "+ticker)
-        interval = "15min"
+        print("Giving history (1 min interval) of "+ticker)
+        interval = "1min"
         outputsize = "full"
     else:
         print("Invalid returntype: " + returntype)
@@ -56,9 +57,9 @@ def dataParser(ticker, returntype, dataImportType="TIME_SERIES_INTRADAY", interv
 
     #return statements
     if returntype == "latest":
-        return df.iloc[0]
+        return df['close'].iloc[0]
     elif returntype == "history":
-        return df
+        return df['close']
     else:
         print("This should not happen")
         return 0
@@ -69,3 +70,4 @@ tickerInfo=dataParser(ticker="GOOGL", returntype="history")
 
 print(tickerInfo)
 
+tickerInfo.plot(kind='line')
