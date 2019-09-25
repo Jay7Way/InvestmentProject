@@ -1,6 +1,4 @@
 from Functions.DataParser import dataParser
-from Classes.Account import Account
-import pandas as pd
 from Functions.AccountsCreator import accountsCreator
 from Functions.MainFunctions import getAccount
 from Classes.Stock import Stock

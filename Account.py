@@ -1,6 +1,6 @@
 
-from Classes.Stock import Stock
-from Classes.Order import Buy, Sell, Order
+from Stock import Stock
+from Order import Buy, Sell, Order
 
 
 class Account:
