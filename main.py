@@ -1,6 +1,7 @@
 from Functions.DataParser import dataParser
 from Functions.AccountsCreator import accountsCreator
 from Functions.MainFunctions import getAccount
+from website import hello
 
 traded_tickers=["AAPL", "GOOGL", "INTC", "MFST"]
 MktInput = {"AAPL" : int(dataParser("AAPL", "latest"))}
