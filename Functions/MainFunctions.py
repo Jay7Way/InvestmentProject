@@ -2,7 +2,12 @@ def getAccount(accName, accList):
     for i in range (0,len(accList)):
         if accList[i].name == accName:
             return i
+    return None
 
+def getStock(stockName, stockList):
+    for i in range (0,len(stockList)):
+        if stockList[i] == stockName:
+            return i
     return None
 
 # TO BUILD
