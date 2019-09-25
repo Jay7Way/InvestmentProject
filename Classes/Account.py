@@ -55,6 +55,11 @@ class Account:
     def SellStock(self, ticker, quantity):
         self.balance +=  self.balance + totalCost(Sell(ticker, quantity, Stock.Price(ticker)))
         remaining = self.RemoveStock(ticker, quantity)
-        print("There are", remaining, " stocks left unsold")
+        print("There are ", remaining, " stocks left unsold")
+
+
+account1 = Account("AccountHolder1", "007", 10000, "", "", "")
+
+account1.BuyStock("AAPL",10)
 
 
