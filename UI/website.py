@@ -23,6 +23,6 @@ def form():
             amount = request.form["amount"]
             price = db[stock]
             costs = (int(amount)*price)
-            return "You have bought " + amount + " of " + stock + ", which costs: " + str(costs)
+            return "You have bought " + amount + " of " + stock + ", at a price of " + str(price) + "; which costs: €" + str(costs)
     else:
         return render_template("form.html")
