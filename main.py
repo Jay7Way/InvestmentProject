@@ -16,6 +16,7 @@ MktInput = MktInput.append(dataParser("MFST", "history"))
 #AccountC = Account("Carl", 3, 50000)
 #AccountD = Account("Dan", 4, 90000
 
+
 Continue = 1
 while (Continue):
     acc=input("Who will trade?")
