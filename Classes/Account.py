@@ -63,9 +63,7 @@ account1 = Account("AccountHolder1", "007", 10000, "", "", "")
 
 print(account1.balance)
 
-apple = Stock(name="Apple", price=10, ticker="AAPL")
-
-account1.BuyStock(apple.ticker, apple.price)
+account1.BuyStock("AAPL", 10)
 
 print(account1.balance)
 
