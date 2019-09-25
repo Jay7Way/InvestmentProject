@@ -2,6 +2,7 @@ import unittest
 
 from Order import Buy, Sell
 from Stock import Stock
+from Functions.DataParser import dataParser
 
 
 class TestCases(unittest.TestCase):
@@ -16,6 +17,14 @@ class TestCases(unittest.TestCase):
     def testPriceCheck(self):
         price = Stock.getprice("AAPL")
         self.assertEqual(10, price)
+
+    def test_DataParser_badTicker(self):
+        val = dataParser("xxx", "latest")
+        self.assertEqual(val, 0)
+
+    def test_DataParser_badReturnType(self):
+        val = dataParser("AAPL", "asd")
+        self.assertEqual(val, 0)
 
 if __name__ == '__main__':
     unittest.main()
