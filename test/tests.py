@@ -1,7 +1,7 @@
 import unittest
 
-from Classes.Order import Buy, Sell
-from Classes.Stock import Stock
+from Order import Buy, Sell
+from Stock import Stock
 
 
 class TestCases(unittest.TestCase):

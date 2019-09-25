@@ -1,8 +1,6 @@
 import csv
 import json
-import pandas as pd
-from Functions.DataParser import dataParser
-from Classes.Account import Account
+from Account import Account
 import pandas as pd
 
 def accountsCreator(use_predefined):
