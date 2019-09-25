@@ -1,6 +1,6 @@
-import Stock
+from .Stock import Stock
 
-class Account(object):
+class Account:
 
     def __init__(self, name, id, balance, portfolio, orders):
         self.name = name
