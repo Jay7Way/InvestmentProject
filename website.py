@@ -16,7 +16,8 @@ def hello():
             password = request.form["password"]
             if password != "guest":
                 print("incorrect password")
-    return render_template("hello.html")
+        request.form["login"]
+
 
 db = {'GOOGL':5.4,'MFST':6,'AAPL':5, 'INIC':70}
 
