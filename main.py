@@ -42,6 +42,8 @@ while (cont):
     quant=int(input("How many stocks?"))
 
     #call buy/sell funciton
+    make_trade() = update_client_portfolio()
+
     prevBalance = accList[index].balance
     accList[index].balance-=todaysPrices[ticker]*quant
     print(name+" bought "+str(quant)+" of "+ticker+" at "+str(todaysPrices[ticker])+" each. Previous balance was " + str(prevBalance)+", new balance is: "+str(accList[index].balance))
