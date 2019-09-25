@@ -1,6 +1,13 @@
+import threading
+import webbrowser
+
+from flask import request, app
+
+import website
 from Functions.DataParser import dataParser
 from Functions.AccountsCreator import accountsCreator
 from Functions.MainFunctions import getAccount
+from website import hello
 
 traded_tickers=["AAPL", "GOOGL", "INTC", "MFST"]
 AAPL_history = dataParser("AAPL", "history")
@@ -9,6 +16,7 @@ AAPL_history = dataParser("AAPL", "history")
 # MktInput = MktInput.append(dataParser("MFST", "history"))
 accList, df= accountsCreator(True)
 
+website.app.run()
 
 cont = True
 t=1
@@ -16,7 +24,7 @@ while (cont):
     todaysPrices = {"AAPL": AAPL_history[-t]}
     print("Todays price of AAPL is "+str(todaysPrices["AAPL"]))
     #get and check name
-    name=input("Who will trade?")
+    name=hello().username
     index=getAccount(name, accList)
     while index is None:
         print("Name not found, try again.")

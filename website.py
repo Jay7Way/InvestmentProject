@@ -1,9 +1,21 @@
+import threading
+import webbrowser
+
 from flask import Flask, request, render_template
 
 app = Flask(__name__)
+url = "http://127.0.0.1:5000"
+threading.Timer(5, lambda: webbrowser.open(url)).start()
 
-@app.route('/')
+@app.route('/',methods=['POST','GET'])
 def hello():
+    if request.method == "POST":
+        username=request.form["username"]
+        password = ""
+        while password != "guest":
+            password = request.form["password"]
+            if password != "guest":
+                print("incorrect password")
     return render_template("hello.html")
 
 db = {'GOOGL':5.4,'MFST':6,'AAPL':5, 'INIC':70}
