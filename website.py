@@ -3,10 +3,13 @@ import webbrowser
 
 from flask import Flask, request, render_template
 
+from main import todaysPrices
+
 app = Flask(__name__)
 url = "http://127.0.0.1:5000"
 threading.Timer(5, lambda: webbrowser.open(url)).start()
 
+todaysPrices
 
 @app.route('/', methods=['POST','GET'])
 def hello():
@@ -32,12 +35,13 @@ def stock():
 @app.route('/form', methods=['POST','GET'])
 def form():
     if request.method == "POST":
+        global stock
         stock = request.form["stock"]
         if stock == "error1":
             return render_template("form.html")
         else:
             amount = request.form["amount"]
-            price = db[stock]
+            price = todaysPrices[stock]
             costs = (int(amount)*price)
             return "You have bought " + amount + " of " + stock + ", at a price of " + str(price) + "; which costs: €" + str(costs)
     else:

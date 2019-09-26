@@ -16,4 +16,5 @@ class Stock:
         self.ticker = ticker
         return self.name
 
+
 apple = Stock(name="Apple", price=10, ticker="AAPL")
