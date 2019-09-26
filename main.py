@@ -10,21 +10,23 @@ from Functions.MainFunctions import getAccount
 from website import hello
 
 traded_tickers=["AAPL", "GOOGL", "INTC", "MFST"]
-AAPL_history = dataParser("AAPL", "history")
+#AAPL_history = dataParser("AAPL", "history")
 # MktInput = MktInput.append {"GOOGL" : int(dataParser("GOOGL", "latest"))}
 # MktInput = MktInput.append(dataParser("INTC", "history"))
 # MktInput = MktInput.append(dataParser("MFST", "history"))
 accList, df= accountsCreator(True)
 
 website.app.run()
+global loggedin_user
+loggedin_user = None
 
 cont = True
 t=1
 while (cont):
-    todaysPrices = {"AAPL": AAPL_history[-t]}
-    print("Todays price of AAPL is "+str(todaysPrices["AAPL"]))
+    #todaysPrices = {"AAPL": AAPL_history[-t]}
+   # print("Todays price of AAPL is "+str(todaysPrices["AAPL"]))
     #get and check name
-    name=hello().username
+    name=hello()
     index=getAccount(name, accList)
     while index is None:
         print("Name not found, try again.")

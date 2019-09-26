@@ -7,16 +7,23 @@ app = Flask(__name__)
 url = "http://127.0.0.1:5000"
 threading.Timer(5, lambda: webbrowser.open(url)).start()
 
-@app.route('/',methods=['POST','GET'])
+
+@app.route('/', methods=['POST','GET'])
 def hello():
-    if request.method == "POST":
-        username=request.form["username"]
+    if request.method == "GET":
+        render_template("hello.html")
+        global loggedin_user
+        loggedin_user=request.form["username"]
         password = ""
         while password != "guest":
             password = request.form["password"]
             if password != "guest":
                 print("incorrect password")
-        request.form["login"]
+        while not (request.form["login"]):
+            print("Log in!")
+        return render_template("form.html")
+    else:
+        return render_template("hello.html")
 
 
 db = {'GOOGL':5.4,'MFST':6,'AAPL':5, 'INIC':70}
