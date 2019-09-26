@@ -4,18 +4,22 @@ from Functions.MainFunctions import getAccount
 from Functions.MainFunctions import getStockIndex
 from Stock import Stock
 
-traded_tickers=["AAPL", "GOOGL", "INTC", "MFST"]
-traded_tickers=["AAPL", "GOOGL"] #temp small set
+traded_tickers=["AAPL", "GOOGL", "INTC", "MSFT"]
+#traded_tickers=["AAPL", "GOOGL"] #temp small set
 
 AAPL_history = dataParser("AAPL", "history")
 GOOGL_history = dataParser("GOOGL", "history")
+INTC_history = dataParser("INTC", "history")
+MSFT_history = dataParser("MSFT", "history")
 # MktInput = MktInput.append(dataParser("INTC", "history"))
 # MktInput = MktInput.append(dataParser("MFST", "history"))
 accList, df= accountsCreator(True)
 
 apple = Stock(AAPL_history[-1], "Apple", "AAPL", AAPL_history)
 google = Stock(GOOGL_history[-1], "Google", "GOOGL", GOOGL_history)
-traded_stocks=[apple, google]
+intel = Stock(INTC_history[-1], "Intel", "INTC", INTC_history)
+microsoft = Stock(MSFT_history[-1], "Microsoft", "MSFT", MSFT_history)
+traded_stocks=[apple, google, intel, microsoft]
 
 cont = True
 t=1
@@ -24,8 +28,8 @@ while (cont):
     marketString = ""
     for i in range(0,len(traded_stocks)):
         traded_stocks[i].update_price(t)
-        marketString += ("Todays price of "+traded_stocks[i].name+" is "+str(traded_stocks[i].current_price)+".")
-    print("\nDay "+str(t)+".\n "+marketString)
+        marketString += ("Todays price of "+traded_stocks[i].name+" is "+str(traded_stocks[i].current_price)+"\n")
+    print("\nDay "+str(t)+".\n"+marketString)
 
     print("Accounts on market:")
     print(accList)

@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def dataParser(ticker, returntype, dataImportType="TIME_SERIES_DAILY", interval="Daily", outputsize="compact", apikey="B09JFLLPFQJIIV6O"):
 
     #check if we support the requested ticker
-    traded_tickers=["AAPL", "GOOGL", "INTC", "MFST"]
+    traded_tickers=["AAPL", "GOOGL", "INTC", "MSFT"]
     if ticker not in traded_tickers:
         print("Not a valid ticker: " + ticker)
         return 0
