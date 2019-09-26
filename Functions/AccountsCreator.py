@@ -1,6 +1,6 @@
 import csv
 import json
-from Account import Account
+from ..Account import Account
 import pandas as pd
 
 def accountsCreator(use_predefined):
