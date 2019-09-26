@@ -13,11 +13,11 @@ def hello():
     if request.method == "POST":
         global loggedin_user
         loggedin_user=request.hello["username"]
-        password = ""
-        while password != "guest":
-            password = request.hello["password"]
-            if password == "guest":
-                return render_template("form.html")
+        password = request.hello["password"]
+        if password == "guest":
+            return render_template("form.html")
+        else:
+            return render_template("hello.html")
     else:
         return render_template("hello.html")
 
