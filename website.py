@@ -30,7 +30,7 @@ def form():
     if request.method == "POST":
         stock = request.form["stock"]
         if stock == "error1":
-            exit()
+            return render_template("form.html")
         else:
             amount = request.form["amount"]
             price = db[stock]
