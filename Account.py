@@ -5,10 +5,7 @@ from Order import Buy, Sell, Order
 
 class Account:
 
-    # portfolio = {
-    #     "Name": Stock.name,
-    #     "Number of stock": 0
-    # }
+
     #
     # orders = {
     #     "Buys": Buy,
@@ -19,16 +16,61 @@ class Account:
         self.name = name
         self.id = id
         self.balance = balance
+        self.portfolio = {}
 
 
-    def AddStock(self, ticker, quantity):
-        stockName = Stock.Name(ticker)
-        if stockName in self.portfolio.keys():
-            self.portfolio[stockName] = self.portfolio[stockName] + quantity
+    def makeTransaction(self, stock, quantity, buyOrSell):
+        price = stock.current_price
+        stockTicker = stock.ticker
+        if buyOrSell == 'BUY':
+            if self.balance > price*quantity:
+                self.balance -= price*quantity
+                self.addStock(stock, quantity)
+                print("Buying stock...")
+            else:
+                print("Insufficient funds in the account to process this purchase")
         else:
-            self.portfolio.append({"Name:": stockName,
-            "Number of stock": quantity}
-        )
+            if stockTicker in self.portfolio:
+                if self.portfolio[stockTicker] > quantity:
+                    self.balance += price*quantity
+                    self.addStock(stock, -quantity)
+                    print("Selling stock...")
+                else:
+                    print("Insufficient stocks in portfolio in the account to process this purchase")
+            else:
+                print("You don't own this stock")
+
+
+    def addStock(self, stock, quantity):
+        stockTicker = stock.ticker
+        if stockTicker in self.portfolio.keys():
+            self.portfolio[stockTicker] = self.portfolio[stockTicker] + quantity
+        else:
+            self.portfolio[stockTicker] = quantity
+
+
+    def printPortfolio(self, stockList, traded_tickers):
+        print("\nBalance of account "+self.name+" is " + str(self.balance) + " and value of portfolio is " + str(self.valueOfPortfolio(stockList, traded_tickers))+
+                                                                             "\nPortfolio of account "+self.name+" is " + str(self.portfolio))
+
+    def valueOfPortfolio(self, stockList, traded_tickers):
+        from Functions.MainFunctions import getStockIndex
+        value = 0
+        for ticker in self.portfolio:
+            index_stock = getStockIndex(ticker, traded_tickers)
+            stock = stockList[index_stock]
+
+            quantity = self.portfolio[ticker]
+            price = stockList[index_stock].current_price
+            value += price*quantity
+
+        return value
+
+
+
+
+
+
 
     def RemoveStock(self, ticker, quantity):
         stockName = Stock.Name(ticker)
@@ -44,13 +86,7 @@ class Account:
         else:
             print("Account holder does not own any of this stock")
 
-    def BuyStock(self, ticker, quantity):
-        price = Stock.getprice(ticker)
-        if self.balance > Order.totalCost(Order(ticker, quantity, price)):
-            self.balance += self.balance + Buy.totalCost(Buy(ticker, quantity, price))
-            self.AddStock(ticker, quantity)
-        else:
-            Exception("Insufficient funds in the account to process this purchase")
+
 
     def SellStock(self, ticker, quantity):
         self.balance +=  self.balance + Sell.totalCost(Sell(ticker, quantity, Stock.getprice(ticker)))
