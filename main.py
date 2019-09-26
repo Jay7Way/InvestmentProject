@@ -24,11 +24,14 @@ while (cont):
     marketString = ""
     for i in range(0,len(traded_stocks)):
         traded_stocks[i].update_price(t)
-        marketString += ("\nTodays price of "+traded_stocks[i].name+" is "+str(traded_stocks[i].current_price)+". ")
-    print(marketString)
+        marketString += ("Todays price of "+traded_stocks[i].name+" is "+str(traded_stocks[i].current_price)+".")
+    print("\nDay "+str(t)+".\n "+marketString)
+
+    print("Accounts on market:")
+    print(accList)
 
     #get and check name
-    name = input("Who will trade?")
+    name = input("\nWho will trade? (press enter to go to next day)")
     if name != "":
         index_Acc=getAccount(name, accList)
         while index_Acc is None:
@@ -36,12 +39,14 @@ while (cont):
             name = input("Who will trade?")
             index_Acc = getAccount(name, accList)
 
-        buyOrSell = input("Buy or sell?").upper()
+        buyOrSell = input("\nBuy or sell?").upper()
         while buyOrSell not in ("BUY", "SELL"):
             print("Not a valid option, try again:")
             buyOrSell = input("Buy or sell?").upper()
 
         #get and check ticker
+        print("\nStocks on market: ")
+        print(traded_stocks)
         ticker=input("Which Ticker?").upper()
         index_Stock=getStockIndex(ticker, traded_tickers)
         while index_Stock is None:
@@ -61,27 +66,17 @@ while (cont):
             except:
                 print("Not a valid number, try again:")
 
-
-
-
-        #call buy/sell funciton
-        prevBalance = accList[index_Acc].balance
-        #accList[index_Acc].balance -= traded_stocks[index_Stock].current_price * quant
-        # TODO
-        print('\nBefore the transaction:')
-        accList[index_Acc].printPortfolio(traded_stocks, traded_tickers)
         accList[index_Acc].makeTransaction(traded_stocks[index_Stock], quant, buyOrSell)
-        print('\nAfter the transaction:')
         accList[index_Acc].printPortfolio(traded_stocks, traded_tickers)
 
-
-        cont = input("\nKeep playing? Y/N").upper()
-        if cont != 'Y':
+        play = input("\nKeep playing? Y/N").upper()
+        if play != 'Y':
             cont = False
     #this else is if you just want to go through time
-
-    for i in range (0,len(accList)):
-        accList[i].printPortfolio(traded_stocks, traded_tickers)
+    else:
+        print("\n")
+        for i in range (0,len(accList)):
+            accList[i].printPortfolio(traded_stocks, traded_tickers)
     t += 1
 
 print("Thanks for playing with us!")

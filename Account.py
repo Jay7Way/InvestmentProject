@@ -50,8 +50,11 @@ class Account:
 
 
     def printPortfolio(self, stockList, traded_tickers):
-        print("\nBalance of account "+self.name+" is " + str(self.balance) + " and value of portfolio is " + str(self.valueOfPortfolio(stockList, traded_tickers))+
-                                                                             "\nPortfolio of account "+self.name+" is " + str(self.portfolio))
+        print(self.name+" has balance " + str(self.balance) + " and portfolio value " + str(self.valueOfPortfolio(stockList, traded_tickers))+
+                                                                             "\nPortfolio content is " + str(self.portfolio))
+
+    def __repr__(self):
+        return str(self.name) + " with balance: " + str(self.balance)
 
     def valueOfPortfolio(self, stockList, traded_tickers):
         from Functions.MainFunctions import getStockIndex

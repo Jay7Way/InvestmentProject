@@ -20,5 +20,7 @@ class Stock:
     def update_price(self, t):
         self.current_price=self.price_history[t]
 
+    def __repr__(self):
+        return str(self.name)+":"+str(self.ticker)
 
 # apple = Stock(name="Apple", price=10, ticker="AAPL")
