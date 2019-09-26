@@ -10,18 +10,14 @@ threading.Timer(5, lambda: webbrowser.open(url)).start()
 
 @app.route('/', methods=['POST','GET'])
 def hello():
-    if request.method == "GET":
-        render_template("hello.html")
+    if request.method == "POST":
         global loggedin_user
-        loggedin_user=request.form["username"]
+        loggedin_user=request.hello["username"]
         password = ""
         while password != "guest":
-            password = request.form["password"]
-            if password != "guest":
-                print("incorrect password")
-        while not (request.form["login"]):
-            print("Log in!")
-        return render_template("form.html")
+            password = request.hello["password"]
+            if password == "guest":
+                return render_template("form.html")
     else:
         return render_template("hello.html")
 
