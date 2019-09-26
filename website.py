@@ -10,10 +10,10 @@ threading.Timer(5, lambda: webbrowser.open(url)).start()
 
 @app.route('/', methods=['POST','GET'])
 def hello():
+    password = ""
     if request.method == "POST":
         global loggedin_user
         loggedin_user=request.hello["username"]
-        password = ""
         while password != "guest":
             password = request.hello["password"]
             if password == "guest":
