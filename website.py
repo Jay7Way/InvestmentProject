@@ -5,27 +5,23 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 url = "http://127.0.0.1:5000"
-threading.Timer(5, lambda: webbrowser.open(url)).start()
+urlstock = "http://127.0.0.1:5000/form"
+webbrowser.open(url)
 
 
 @app.route('/', methods=['POST','GET'])
 def hello():
-    password = ""
+    #password = ""
     if request.method == "POST":
         global loggedin_user
-        loggedin_user=request.hello["username"]
-<<<<<<< HEAD
-        while password != "guest":
-            password = request.hello["password"]
-            if password == "guest":
-                return render_template("form.html")
-=======
-        password = request.hello["password"]
+        loggedin_user=request.form["username"]
+        password = request.form["password"]
         if password == "guest":
-            return render_template("form.html")
+            webbrowser.open(urlstock)
+            return "welcome " + loggedin_user + "buy some stocks on the next tab over!"
         else:
-            return render_template("hello.html")
->>>>>>> 1b89403ffccc01622207b6d80fcab25c9f1711cd
+            return "Wrong password"
+
     else:
         return render_template("hello.html")
 
