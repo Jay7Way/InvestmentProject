@@ -5,7 +5,7 @@ from flask import Flask, request, render_template
 #from .main import traded_stocks
 from .Functions.AccountsCreator import accountsCreator
 from .Functions.DataParser import dataParser
-from .Functions.MainFunctions import getAccount
+from .Functions.MainFunctions import getAccount, getStockIndex
 from .Stock import Stock
 
 app = Flask(__name__)
@@ -56,7 +56,6 @@ def hello():
 @app.route('/form', methods=['POST', 'GET'])
 def form():
     if request.method == "POST":
-
         stock = request.form["stock"]
         if stock == "error1":
             return render_template("form.html")
@@ -66,8 +65,12 @@ def form():
             if buyOrSell == "error2":
                 return render_template("form.html")
             else:
-                price = traded_stocks[stock].current_price
+                i = getStockIndex(traded_stocks, stock)
+                price = traded_stocks[i]
                 costs = (int(amount)*price)
                 return "You have bought " + amount + " of " + stock + ", at a price of " + str(price) + "; which costs: €" + str(costs)
     else:
         return render_template("form.html")
+
+
+
