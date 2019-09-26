@@ -24,11 +24,11 @@ while (cont):
     marketString = ""
     for i in range(0,len(traded_stocks)):
         traded_stocks[i].update_price(t)
-        marketString += ("Todays price of "+traded_stocks[i].name+" is "+str(traded_stocks[i].current_price)+". ")
+        marketString += ("\nTodays price of "+traded_stocks[i].name+" is "+str(traded_stocks[i].current_price)+". ")
     print(marketString)
 
     #get and check name
-    name=input("Who will trade?")
+    name = input("Who will trade?")
     if name != "":
         index_Acc=getAccount(name, accList)
         while index_Acc is None:
@@ -79,9 +79,9 @@ while (cont):
         if cont != 'Y':
             cont = False
     #this else is if you just want to go through time
-    else:
-        accList[index_Acc].printPortfolio(traded_stocks, traded_tickers)
 
+    for i in range (0,len(accList)):
+        accList[i].printPortfolio(traded_stocks, traded_tickers)
     t += 1
 
 print("Thanks for playing with us!")
